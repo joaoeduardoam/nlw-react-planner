@@ -5,6 +5,7 @@ import { InviteGuestsModal } from './invite-guests-modal'
 import { ConfirmTripModal } from './confirm-trip-modal'
 import { DestinationAndDateStep } from './steps/destination-and-date-step'
 import { InviteGuestsSteps } from './steps/invite-guests-step'
+import { DateRange } from 'react-day-picker'
 
 
 
@@ -14,6 +15,13 @@ export function CresteTripPage() {
 
 
   const navigate = useNavigate()
+
+  
+  const [destination, setDestination] = useState('')
+  const [ownerName, setOwnerName] = useState('')
+  const [ownerEmail, setOwnerEmail] = useState('')
+  const [eventStartAndEndDate, setEventStartAndEndDate] = useState<DateRange | undefined>()
+  
 
   const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false)
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
@@ -73,7 +81,15 @@ export function CresteTripPage() {
   }
   function createTrip(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault()
-    navigate('/trips/123')
+    
+    console.log(destination)
+    console.log(eventStartAndEndDate)
+    console.log(emailsToInvite)
+    console.log(ownerName)
+    console.log(ownerEmail)
+
+    
+    //navigate('/trips/123')
 }
 
    
@@ -94,6 +110,10 @@ export function CresteTripPage() {
                 closeGuestsInput={closeGuestsInput}
                 isGuestsInputOpen={isGuestsInputOpen}
                 openGuestsInput={openGuestsInput}
+                setDestination={setDestination}
+                setEventStartAndEndDate={setEventStartAndEndDate}
+                eventStartAndEndDate={eventStartAndEndDate}
+                
 
             />
         
@@ -134,6 +154,8 @@ export function CresteTripPage() {
         <ConfirmTripModal
             closeConfirmTripModal={closeConfirmTripModal}
             createTrip={createTrip}
+            setOwnerName={setOwnerName}
+            setOwnerEmail={setOwnerEmail}
         />                  
         
       )}      
