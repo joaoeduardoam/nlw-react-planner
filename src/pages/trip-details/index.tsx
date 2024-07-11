@@ -1,4 +1,4 @@
-import { Calendar, CircleCheck, Link2, MapPin, Plus, Settings2 } from "lucide-react";
+import { Calendar, CircleCheck, CircleDashed, Link2, MapPin, Plus, Settings2, UserCog } from "lucide-react";
 
 export function TripDetailsPage() {
 
@@ -92,7 +92,7 @@ export function TripDetailsPage() {
 
           <div className="w-80 space-y-6">
 
-            <div className="space-y-6">
+          <div className="space-y-6">
               <h2 className="font-semibold text-xl">Importants Links</h2>
               <div className="space-y-5">
                 <div className="flex items-center justify-between gap-4">         {/* flex-1*/ }
@@ -123,7 +123,35 @@ export function TripDetailsPage() {
 
             <div className="w-full h-px bg-zinc-800"/>
 
-            <div></div>
+            <div className="space-y-6">
+              <h2 className="font-semibold text-xl">Guests</h2>
+              <div className="space-y-5">
+                <div className="flex items-center justify-between gap-4">         {/* flex-1*/ }
+                  <div className="space-y-1.5">
+                    <span className="block font-medium text-zinc-100"> Joao Eduardo</span>
+                    <span className="block text-sm text-zinc-400 truncate">joaoeduardo@email.com</span>
+
+                  </div>
+                  <CircleDashed className="text-zinc-400 size-5 shrink-0"/>        {/*   shrink-0: not shrink the size / opção 2: option 2: put flex-1 in the previous div  */}
+
+                </div>
+
+                <div className="flex items-center justify-between gap-4">         {/* flex-1*/ }
+                  <div className="space-y-1.5">
+                    <span className="block font-medium text-zinc-100"> Joao Eduardo</span>
+                    <span className="block text-sm text-zinc-400 truncate">joaoeduardo@email.com</span>
+                  </div>
+                  <CircleDashed className="text-zinc-400 size-5 shrink-0"/>        {/*   shrink-0: not shrink the size / opção 2: option 2: put flex-1 in the previous div  */}
+
+                </div>
+              </div>
+              <button className="bg-zinc-800 text-zinc-200 w-full rounded-lg px-5 justify-center
+                                 py-2 font-medium flex items-center gap-2 hover:bg-zinc-700">    {/*   w-full: occupies the entire width of the div */}
+                <UserCog className='size-5'/>
+                Manage Guests                
+              </button>
+
+            </div>
 
           </div>
 
