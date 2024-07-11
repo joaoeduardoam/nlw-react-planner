@@ -1,4 +1,3 @@
-import {ArrowRight, UserRoundPlus, } from 'lucide-react'
 import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { InviteGuestsModal } from './invite-guests-modal'
@@ -6,6 +5,7 @@ import { ConfirmTripModal } from './confirm-trip-modal'
 import { DestinationAndDateStep } from './steps/destination-and-date-step'
 import { InviteGuestsSteps } from './steps/invite-guests-step'
 import { DateRange } from 'react-day-picker'
+import { api } from '../../lib/axios'
 
 
 
@@ -79,7 +79,8 @@ export function CresteTripPage() {
     setEmailsToInvite(newEmailList)
 
   }
-  function createTrip(event: FormEvent<HTMLFormElement>): void {
+  
+  async function createTrip(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     
     console.log(destination)
@@ -88,8 +89,32 @@ export function CresteTripPage() {
     console.log(ownerName)
     console.log(ownerEmail)
 
+    if(!destination){
+      return
+    }
+    if(!eventStartAndEndDate?.from || !eventStartAndEndDate.to){
+      return
+    }
+    if(emailsToInvite.length === 0){
+      return
+    }
+    if(!ownerEmail || !ownerName){
+      return
+    }
+
+    const response = await api.post('/trips',{
+      destination,
+      starts_at: eventStartAndEndDate.from,
+      ends_at: eventStartAndEndDate.to,
+      emails_to_invite: emailsToInvite,
+      owner_name: ownerName,
+      owner_email: ownerEmail
+    })
+
+    const {tripId} = response.data
+
     
-    //navigate('/trips/123')
+    navigate(`/trips/${tripId}`)
 }
 
    
