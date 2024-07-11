@@ -50,7 +50,7 @@ export function InviteGuestsModal({
 
             </div>
 
-            <div className="w-full h-0.5 bg-zinc-800"/>
+            <div className="w-full h-px bg-zinc-800"/>
 
             <form onSubmit={addNewEmailToInvite} className="p-2.5 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">
 
