@@ -1,7 +1,7 @@
 import { Calendar, Tag, X } from "lucide-react"
 import { Button } from "../../components/button"
 import { FormEvent } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { api } from "../../lib/axios"
 
 interface CreateActivityModalProps{
@@ -15,7 +15,6 @@ export function CreateActivityModal({
 }: CreateActivityModalProps){
 
   const {tripId} = useParams()
-  const navigate = useNavigate()
 
   async function createActivity (event: FormEvent<HTMLFormElement>){
     event.preventDefault()
@@ -23,12 +22,12 @@ export function CreateActivityModal({
     const data = new FormData(event.currentTarget)
 
     const title = data.get('title')?.toString()
-    const occurs_at = data.get('occurs_at')?.valueOf()
+    const occurs_at = data.get('occurs_at')?.toString()
 
-    await api.post(`/trips/${tripId}/activities`), {
+    await api.post(`/trips/${tripId}/activities`, {
       title,
       occurs_at
-    }
+    })
 
     window.document.location.reload()
   }
@@ -44,7 +43,7 @@ export function CreateActivityModal({
                 <X className="size-5 text-zinc-400"/>
               </button>
             </div>
-            <p className='text-sm text-zinc-400'> All the guests can see the activiies.</p>
+            <p className='text-sm text-zinc-400'> All the guests can see the activities.</p>
           </div>
       
           <form onSubmit={createActivity} className="space-y-3">
