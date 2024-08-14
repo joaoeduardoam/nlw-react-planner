@@ -2,7 +2,7 @@ import { CircleCheck } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../lib/axios";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 interface Activity{
 
@@ -31,12 +31,13 @@ return(
   <div className="space-y-8">
 
     {activities.map(category => {
+      const date = parseISO(category.date);
       return (
 
         <div key={category.date} className="space-y-2.5">
 
           <div className="flex gap-2 items-baseline">
-            <span className="text-xl text-zinc-300 font-semibold">Day {format(category.date, 'd')}</span>
+            <span className="text-xl text-zinc-300 font-semibold">Day {format(date, 'd')}</span>
             <span className="text-xs text-zinc-500">{format(category.date, 'EEEE')}</span>
           </div>
 
