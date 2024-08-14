@@ -20,8 +20,11 @@ export function DestinationAndDateHeader(){
   const [trip, setTrip] = useState<Trip|undefined>()
 
   useEffect(()=> {
-    api.get(`/trips/${tripId}`).then(response => setTrip(response.data.trip))
+    api.get(`/trips/${tripId}`).then(response => setTrip(response.data))
   })
+
+  // console.log("Trip: "+trip)
+  // console.log("trip.starts_at: "+trip?.starts_at)
 
   const displayedDate = trip
   ? format(trip.starts_at, "MMM' 'd'th to '").concat(format(trip.ends_at, "MMM' 'd'th"))

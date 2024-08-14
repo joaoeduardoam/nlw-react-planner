@@ -112,7 +112,6 @@ export function CresteTripPage() {
     })
 
     const {tripId} = response.data
-
     
     navigate(`/trips/${tripId}`)
 }
